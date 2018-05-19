@@ -207,7 +207,7 @@ public void conecta(String usuario, String contrasena) throws SQLException
         System.out.println("salario antes del if. Dentro de aceptar. Salario:"+salario+".");
         if(salario!=null)                                                       //Si es null fuera, si no 
             if(!".".equals(salario)) {                                           //si no es un punto(del decimanl) 
-                salariof = Float.parseFloat(salario);
+                salariof = (Float) Float.parseFloat(salario);
                 System.out.println("hace update de salario!! Salario:" + salario +".\tSalariof:"+salariof+".");
                 rs.updateFloat("salario",salariof ); }          //parseamos y actualizamos su valor
             else
@@ -229,7 +229,7 @@ public void conecta(String usuario, String contrasena) throws SQLException
         else{
             rs.updateRow(); // Si la variable nuevoRegistro es false actualizamos el registro
             System.out.println("Registro de empleado actualizado");
-            //java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " "+nombre+" modificado" );
+            java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " "+nombre+" modificado" );
         }
     }
       // Método para aceptar1 la operación a realizar (Insertar o editar)
@@ -264,7 +264,7 @@ public void conecta(String usuario, String contrasena) throws SQLException
             rs.next();
         rs.next(); //Nos vamos uno atras porque me da la gana
         System.out.println("Registro eliminado");
-        //java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " "+nombre+"  borrado" );
+        java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " "+nombre+"  borrado" );
 
     }    
     
