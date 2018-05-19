@@ -66,7 +66,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         auxiliar = new ConectaBD("auxiliar");
         
         
-        this.setUndecorated(true);
+        //this.setUndecorated(true);
         iniciarTareas();    
         initComponents();   //Inicia todos los componentes.
         Fillcombos();
@@ -296,15 +296,6 @@ public class EvaluableV3 extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         tarea = new javax.swing.JTextField();
-        MaskFormatter maskSAL = null;
-        try
-        {
-            maskSAL = new MaskFormatter("####.##");
-        }
-        catch (Exception ex){
-            ex.printStackTrace();
-        }
-        salario2 = new JFormattedTextField(maskSAL);
         borrarE = new javax.swing.JButton();
         aceptarE = new javax.swing.JButton();
         cancelarE = new javax.swing.JButton();
@@ -355,6 +346,14 @@ public class EvaluableV3 extends javax.swing.JFrame {
         departamento = new JFormattedTextField(maskDEPP);
         jefeCB = new javax.swing.JComboBox<>();
         departamentoCB = new javax.swing.JComboBox<>();
+        MaskFormatter maskSAL = null;
+        try
+        {
+            maskSAL = new MaskFormatter("####.##");
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
         salario = new JFormattedTextField(maskSAL);
         Departamentos = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -408,6 +407,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         Archivo = new javax.swing.JMenu();
         verLog = new javax.swing.JMenuItem();
+        BorrarLog = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         Salir = new javax.swing.JMenuItem();
         Herramientas = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -551,7 +552,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                                         .addGroup(EmpleadosLayout.createSequentialGroup()
                                             .addGroup(EmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(EmpleadosLayout.createSequentialGroup()
-                                                    .addComponent(salario2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(salario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jLabel6))
                                                 .addGroup(EmpleadosLayout.createSequentialGroup()
@@ -583,8 +584,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(EmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(ultimoE)
-                                                .addComponent(nombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(salario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(nombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EmpleadosLayout.createSequentialGroup()
                                     .addComponent(tituloE, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -640,12 +640,10 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 .addGroup(EmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(salario2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(departamentoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addComponent(salario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(departamentoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(EmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarE)
                     .addComponent(cancelarE))
@@ -743,21 +741,12 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(DepartamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DepartamentosLayout.createSequentialGroup()
-                        .addComponent(aceptarD)
-                        .addGap(50, 50, 50)
-                        .addComponent(cancelarD)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(DepartamentosLayout.createSequentialGroup()
                         .addGroup(DepartamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(DepartamentosLayout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addComponent(anteriorD)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(siguienteD))
-                            .addGroup(DepartamentosLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(localidad, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(DepartamentosLayout.createSequentialGroup()
                                 .addGroup(DepartamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel9)
@@ -784,7 +773,18 @@ public class EvaluableV3 extends javax.swing.JFrame {
                         .addComponent(tituloD, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refrescarD)
-                        .addGap(89, 89, 89))))
+                        .addGap(89, 89, 89))
+                    .addGroup(DepartamentosLayout.createSequentialGroup()
+                        .addGroup(DepartamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DepartamentosLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(localidad, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DepartamentosLayout.createSequentialGroup()
+                                .addComponent(aceptarD)
+                                .addGap(50, 50, 50)
+                                .addComponent(cancelarD)))
+                        .addGap(0, 449, Short.MAX_VALUE))))
         );
         DepartamentosLayout.setVerticalGroup(
             DepartamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -903,6 +903,15 @@ public class EvaluableV3 extends javax.swing.JFrame {
             }
         });
         Archivo.add(verLog);
+
+        BorrarLog.setText("Borrar Log");
+        BorrarLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarLogActionPerformed(evt);
+            }
+        });
+        Archivo.add(BorrarLog);
+        Archivo.add(jSeparator2);
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -1185,7 +1194,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
 
     private void buscarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarEmpleadosActionPerformed
     String[] options = new String[] {"Tarea", "Salario", "Cancel"};
-    
+    refrescarE.setText("Limpiar filtros");  //Indicamos el boton para limpiar los filtros.
     int response = JOptionPane.showOptionDialog(null, "Seleccion el criterio de busqueda de empleado", "Buscar empleado",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
         System.out.println("response " + response);
     switch (response){
@@ -1230,6 +1239,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 }
                 catch (SQLException ex) 
                 {
+                    toastMessage("Aviso","Por favor, asegurese de introducir el rango de forma correcta");
                     ex.printStackTrace();
                 } 
         default: toastMessage("Aviso","Operacion cancelada.");
@@ -1353,6 +1363,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
 
     private void refrescarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrescarEActionPerformed
         filtro.setText((""));
+        refrescarE.setText("Refrescar");
 
         java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " Consulta empleados" );
 
@@ -1506,6 +1517,19 @@ public class EvaluableV3 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_verLogBotonActionPerformed
 
+    private void BorrarLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarLogActionPerformed
+    File fichero = new File(ruta);
+        
+        if (!fichero.exists()) {
+            toastMessage("Aviso","El Log no se ha podido borrar porque no existía.");
+        System.out.println("El archivo data no existe.");
+    } else {
+        fichero.delete();
+        toastMessage("Aviso","El Log ha sido eliminado.");
+        System.out.println("El archivo data fue eliminado.");
+    }
+    }//GEN-LAST:event_BorrarLogActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1544,6 +1568,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Archivo;
+    private javax.swing.JMenuItem BorrarLog;
     private javax.swing.JPanel Busqueda;
     private javax.swing.JPanel Departamentos;
     private javax.swing.JPanel Empleados;
@@ -1588,6 +1613,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JFormattedTextField jefe;
     private javax.swing.JComboBox<String> jefeCB;
@@ -1601,7 +1627,6 @@ public class EvaluableV3 extends javax.swing.JFrame {
     private javax.swing.JButton refrescarD;
     private javax.swing.JButton refrescarE;
     private javax.swing.JFormattedTextField salario;
-    private javax.swing.JTextField salario2;
     private javax.swing.JButton siguienteD;
     private javax.swing.JButton siguienteE;
     private javax.swing.JTextField tarea;
@@ -1737,7 +1762,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 auxiliar.irAlSiguiente();}
             
             //Rellenamos el combo de departamentos.
-            auxiliar.ejecutaSQLq("select num_dpto from dpto");
+            auxiliar.ejecutaSQLq("select distinct tarea from empleado");
             auxiliar.irAlFinal();
             total=auxiliar.rs.getRow();
             auxiliar.irAlPrimero();
