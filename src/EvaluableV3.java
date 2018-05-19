@@ -1022,6 +1022,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
             botoneraNavegacion(false,'d');
             enabledFields(true,'d');
             botoneraConfirmacion(true,'d'); 
+            java.util.Date now = new java.util.Date();   addLog( formatofh.format(now)+ " Inserción de departamento.");
+
         }
         catch (Exception e)
         {
@@ -1035,6 +1037,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
             if (opc == 0){
                 departamentos.borrar(); // Borramos el cliente seleccionado
                 printDepartamentos(departamentos.rs); // Mostramos el siguiente registro
+           java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " departamento borrado" );
+
             }
         } catch (Exception e )
         {
@@ -1043,14 +1047,15 @@ public class EvaluableV3 extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarDActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        setVisible(false); //you can't see me!
-        dispose(); //cierra el jframe
+
         try {
             empleados.cerrarConexion();
             departamentos.cerrarConexion();
             auxiliar.cerrarConexion();
+            setVisible(false); //you can't see me!
+            dispose(); //cierra el jframe
         } catch (SQLException ex) {
-            Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SalirActionPerformed
 
@@ -1069,10 +1074,10 @@ public class EvaluableV3 extends javax.swing.JFrame {
             
         }catch (FileNotFoundException ex) {
             toastMessage("Aviso","Archivo log no encontrado!");
-            Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
             toastMessage("Aviso","Error al leer el log!");
-            Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_verLogActionPerformed
 
@@ -1122,6 +1127,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
             botoneraNavegacion(false,'d'); // Dehabilitamos la botonera de navegación de departamento
             enabledFields(true,'d');         // Habilitamos los campos de departamento
             botoneraConfirmacion(true,'d'); // Habilitamos los botones Aceptar/Cancelar de departamento
+            java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " departamento modificado" );
 
         } catch (Exception e)
         {
@@ -1355,6 +1361,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
             botoneraNavegacion(false,'e'); // Dehabilitamos la botonera de navegación
             enabledFields(true,'e');         // Ponemos el cursor en el campo de numero empleado y habilitamos los campos
             botoneraConfirmacion(true,'e'); // Habilitamos los botones Aceptar/Cancelar
+            java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " empleado modificado" );
+
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -1403,6 +1411,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
             botoneraNavegacion(false,'e');
             enabledFields(true,'e');
             botoneraConfirmacion(true,'e');
+            java.util.Date now = new java.util.Date();   addLog( formatofh.format(now)+ " Inserción de empleado.");
+
         }
         catch (Exception e)
         {
@@ -1486,6 +1496,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
             if (opc == 0){
                 empleados.borrar(); // Borramos el cliente seleccionado
                 printEmpleados(empleados.rs); // Mostramos el siguiente registro
+            java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " empleado borrado" );
+
             }
         } catch (Exception e )
         {
@@ -1762,7 +1774,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 auxiliar.irAlSiguiente();}
             
             //Rellenamos el combo de departamentos.
-            auxiliar.ejecutaSQLq("select distinct tarea from empleado");
+            auxiliar.ejecutaSQLq("select distinct nombre_dpto from dpto");
             auxiliar.irAlFinal();
             total=auxiliar.rs.getRow();
             auxiliar.irAlPrimero();
