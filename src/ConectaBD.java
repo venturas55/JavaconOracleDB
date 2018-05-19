@@ -1,17 +1,10 @@
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -25,12 +18,8 @@ import javax.swing.JOptionPane;
  * @author ventu
  */
 public class ConectaBD { 
-        //para que funcione el Log.
-    String ruta=System.getProperty("user.dir")+"\\log.txt";
-    java.text.DateFormat formatofh = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    
       // Declaramos los atributos
-    private String nombre;          //Al iniciar se especificara el nombre de la tabla, para luego mostarrlo en el Log.
+    //private String nombre;          //Al iniciar se especificara el nombre de la tabla, para luego mostarrlo en el Log.
     Connection conn; // Para crear la conexión de la base de datos
     Statement sentenciaSQL; // Para realizar las operaciones SQL
     ResultSet rs; // Para almacenar los datos devueltos en la consulta empleado
@@ -40,7 +29,6 @@ public class ConectaBD {
 
     public ConectaBD(String nom) 
     {
-        nombre=nom;
         conn = null; 
         sentenciaSQL = null; 
         rs = null;
@@ -221,15 +209,13 @@ public class ConectaBD {
         
         
         if (nuevoRegistro) {
-            rs.last(); // Nos vamos al final de todos los registros
             rs.insertRow(); // Insertamos el registro
+            rs.last(); // Nos vamos al final de todos los registros
             System.out.println("Nuevo registro empleado introducido");
-            java.util.Date now = new java.util.Date();   addLog( formatofh.format(now)+ " Inserción de "+nombre );
         }
         else{
             rs.updateRow(); // Si la variable nuevoRegistro es false actualizamos el registro
             System.out.println("Registro de empleado actualizado");
-            java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " "+nombre+" modificado" );
         }
     }
       // Método para aceptar1 la operación a realizar (Insertar o editar)
@@ -264,7 +250,6 @@ public class ConectaBD {
             rs.next();
         rs.next(); //Nos vamos uno atras porque me da la gana
         System.out.println("Registro eliminado");
-        java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " "+nombre+"  borrado" );
 
     }    
     
@@ -286,7 +271,7 @@ public class ConectaBD {
         
     }
     
-        public boolean esprimero() throws SQLException{
+    public boolean esprimero() throws SQLException{
         int pos;
         pos=rs.getRow();
         rs.first();
@@ -295,33 +280,8 @@ public class ConectaBD {
         
     }
     
-        //Funcion para añadir texto al log.
-    public void addLog(String registro){
-    File archivo = new File(ruta);
-    BufferedWriter bw;
-      
-        try {
-                bw = new BufferedWriter(new FileWriter(archivo,true));
-                bw.write(registro);
-                bw.newLine();
-            bw.close(); 
-        } catch (IOException ex) {
-            Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
-        }
-  }
-    
-
-    /**
+     /**
      * @return the nombre
      */
-    public String getNombre() {
-        return nombre;
-    }
 
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 }
