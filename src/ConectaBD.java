@@ -47,7 +47,7 @@ public class ConectaBD {
         nuevoRegistro = false;
     }  
     
-public void conecta(String usuario, String contrasena) throws SQLException 
+    public void conecta(String usuario, String contrasena) throws SQLException 
     {
         String jdbcUrl;
         try {
@@ -76,7 +76,7 @@ public void conecta(String usuario, String contrasena) throws SQLException
         }
     }
     
- public void crearSentencias() throws java.sql.SQLException
+    public void crearSentencias() throws java.sql.SQLException
     {
         // Crear una sentencia para enviar consultas a la base de datos
         sentenciaSQL = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
