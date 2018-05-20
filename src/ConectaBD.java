@@ -19,12 +19,13 @@ import javax.swing.JOptionPane;
  */
 public class ConectaBD { 
       // Declaramos los atributos
-    private String nombre;          //Al iniciar se especificara el nombre de la tabla, para luego mostarrlo en el Log.
+    private final String nombre;          //Al iniciar se especificara el nombre de la tabla, para luego mostarrlo en el Log.
     Connection conn; // Para crear la conexión de la base de datos
     Statement sentenciaSQL; // Para realizar las operaciones SQL
     ResultSet rs; // Para almacenar los datos devueltos en la consulta empleado
     String usuario = "plsql";
     String contrasena = "plsql";
+    String puerto = "1521";
     boolean nuevoRegistro;
 
     public ConectaBD(String nom) {
@@ -35,7 +36,7 @@ public class ConectaBD {
         nuevoRegistro = false;
     }  
     
-    public void conecta(String usuario, String contrasena) throws SQLException {
+    public void conecta(String usuario, String contrasena, String puerto) throws SQLException {
         String jdbcUrl;
         try {
             //Registramos el Driver de Oracle
@@ -45,7 +46,7 @@ public class ConectaBD {
             
             //Abrimos la conexión con la Base de Datos
             System.out.println("Conectando con la Base de datos...");
-            jdbcUrl = "jdbc:oracle:thin:@localhost:1521:XE"; // Dirección donde se ubica la base de datos tienda
+            jdbcUrl = "jdbc:oracle:thin:@localhost:"+puerto+":XE"; // Dirección donde se ubica la base de datos tienda
             // Conectamos con la base de datos usando la dirección, el usuario y la contraseña (por defecto usuario "root" contraseña ""
             conn = DriverManager.getConnection(jdbcUrl,usuario,contrasena);
             
@@ -253,9 +254,7 @@ public class ConectaBD {
         pos=rs.getRow();
         rs.last();
         size=rs.getRow();
-        System.out.println("es ultimo antes");
         rs.absolute(pos);
-        System.out.println("es ultimo despues");
        return (size==pos);
         
     }
@@ -264,9 +263,7 @@ public class ConectaBD {
         int pos;
         pos=rs.getRow();
         rs.first();
-        System.out.println("Es primero antes");
         rs.absolute(pos);
-        System.out.println("Es primero despues");
         return (1==pos);
         
     }
