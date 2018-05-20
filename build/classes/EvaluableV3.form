@@ -19,14 +19,33 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="verLog">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="L"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Ver Log"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verLogActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="BorrarLog">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="B"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Borrar Log"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BorrarLogActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Salir">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="S"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
@@ -47,6 +66,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="configurarBBDD">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="C"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Configurar BBDD"/>
               </Properties>
               <Events>
@@ -60,6 +82,9 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="InstalarDependencia">
                   <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="I"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Instalar dependencias"/>
                   </Properties>
                   <Events>
@@ -68,6 +93,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="desinstalarDependencia">
                   <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="D"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Desinstalar dependencias"/>
                   </Properties>
                   <Events>
@@ -76,6 +104,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="habilitarTrigger">
                   <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="T"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Activar Trigger"/>
                   </Properties>
                   <Events>
@@ -84,6 +115,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="deshabilitarTrigger">
                   <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="R"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Desactivar Trigger"/>
                   </Properties>
                   <Events>
@@ -92,6 +126,32 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="borrarTablaEmpMod">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="T"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Borrar tabla Empleados_Modificados"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="borrarTablaEmpModActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar Ayuda"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
@@ -187,7 +247,7 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                       <Group type="102" attributes="0">
-                                                          <Component id="salario2" min="-2" pref="63" max="-2" attributes="0"/>
+                                                          <Component id="salario" min="-2" pref="63" max="-2" attributes="0"/>
                                                           <EmptySpace max="32767" attributes="0"/>
                                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                                       </Group>
@@ -231,7 +291,6 @@
                                                       <Component id="nombreE" min="-2" pref="209" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Component id="salario" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -303,13 +362,11 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="salario2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="departamento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="departamentoCB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="salario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="salario" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="aceptarE" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cancelarE" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -363,12 +420,6 @@
             <Component class="javax.swing.JTextField" name="tarea">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter maskTAR = null;&#xd;&#xa;try&#xd;&#xa;{&#xd;&#xa;    maskTAR = new MaskFormatter(&quot;***************&quot;);&#xd;&#xa;}&#xd;&#xa;catch (Exception ex){&#xd;&#xa;    ex.printStackTrace();&#xd;&#xa;}"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="salario2">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(maskSAL);"/>
-                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter maskSAL = null;&#xd;&#xa;try&#xd;&#xa;{&#xd;&#xa;    maskSAL = new MaskFormatter(&quot;####.##&quot;);&#xd;&#xa;}&#xd;&#xa;catch (Exception ex){&#xd;&#xa;    ex.printStackTrace();&#xd;&#xa;}"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="borrarE">
@@ -514,6 +565,7 @@
             <Component class="javax.swing.JFormattedTextField" name="salario">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(maskSAL);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter maskSAL = null;&#xd;&#xa;try&#xd;&#xa;{&#xd;&#xa;    maskSAL = new MaskFormatter(&quot;####.##&quot;);&#xd;&#xa;}&#xd;&#xa;catch (Exception ex){&#xd;&#xa;    ex.printStackTrace();&#xd;&#xa;}"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -538,12 +590,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="aceptarD" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="cancelarD" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -551,11 +597,6 @@
                                       <Component id="anteriorD" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="siguienteD" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="localidad" min="-2" pref="76" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
@@ -591,6 +632,21 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="refrescarD" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="localidad" min="-2" pref="155" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="aceptarD" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="cancelarD" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="449" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

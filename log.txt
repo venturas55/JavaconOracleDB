@@ -1,1 +1,54 @@
 FICHERO DE TEXTO CREADO
+2018/05/20 08:32:29 Consulta empleados
+2018/05/20 08:32:30 Consulta departamentos
+2018/05/20 08:35:30 Inserción de departamento.
+2018/05/20 08:35:49 Consulta departamentos
+    Se inicia una nueva sesión a las 2018/05/20 08:38:46
+2018/05/20 08:39:02 Inserción de departamento.
+2018/05/20 08:39:13 Consulta departamentos
+2018/05/20 08:39:27 empleado modificado
+2018/05/20 08:39:46 Inserción de empleado.
+2018/05/20 08:40:27 Consulta empleados
+    Se inicia una nueva sesión a las 2018/05/20 08:41:58
+2018/05/20 08:42:05 Inserción de empleado.
+2018/05/20 08:42:34 Consulta empleados
+2018/05/20 08:42:44 empleado borrado
+2018/05/20 08:42:54 Inserción de empleado.
+2018/05/20 08:43:36 Consulta empleados
+2018/05/20 08:43:42 empleado modificado
+2018/05/20 08:43:52 empleado modificado
+2018/05/20 08:44:03 empleado modificado
+2018/05/20 08:44:13 Consulta empleados
+    Se inicia una nueva sesión a las 2018/05/20 08:46:02
+2018/05/20 08:46:08 empleado modificado
+2018/05/20 08:46:22 empleado modificado
+2018/05/20 08:47:06 empleado modificado
+2018/05/20 08:47:30 empleado modificado
+2018/05/20 08:47:41 empleado modificado
+2018/05/20 08:48:32 Consulta empleados
+2018/05/20 08:48:39 departamento modificado
+    Se inicia una nueva sesión a las 2018/05/20 08:56:47
+    Se inicia una nueva sesión a las 2018/05/20 09:06:37
+    Se inicia una nueva sesión a las 2018/05/20 10:03:23
+    Se inicia una nueva sesión a las 2018/05/20 10:08:32
+    Se inicia una nueva sesión a las 2018/05/20 10:09:05
+    Se inicia una nueva sesión a las 2018/05/20 11:25:22
+    Se inicia una nueva sesión a las 2018/05/20 11:31:53
+    Se inicia una nueva sesión a las 2018/05/20 11:33:39
+    Se inicia una nueva sesión a las 2018/05/20 11:45:57
+2018/05/20 11:46:10 Consulta empleados
+    Se inicia una nueva sesión a las 2018/05/20 11:46:50
+    Se inicia una nueva sesión a las 2018/05/20 11:55:35
+2018/05/20 11:55:48 Consulta empleados
+2018/05/20 11:55:56 Consulta gasto por tarea
+    Se inicia una nueva sesión a las 2018/05/20 12:51:04
+2018/05/20 12:51:13 empleado modificado
+2018/05/20 13:53:48 departamento borrado
+2018/05/20 13:53:52 departamento borrado
+2018/05/20 13:54:28 empleado modificado
+    Se inicia una nueva sesión a las 2018/05/20 19:22:28
+2018/05/20 19:22:44 Buscar empleado por salario
+2018/05/20 19:22:46 Consulta empleados
+    Se inicia una nueva sesión a las 2018/05/20 19:24:34
+2018/05/20 19:48:38 Buscar empleado por tarea
+2018/05/20 19:50:04 Buscar empleado por salario
