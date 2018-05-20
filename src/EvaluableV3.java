@@ -1997,8 +1997,8 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
             Desktop.getDesktop().open(objetofile);
 
      }catch (IOException ex) {
-
-            System.out.println(ex);
+          toastMessage("Aviso","disculpe, no se encontró el archivo de Ayuda.");
+            System.out.println("No se encontro el archivo de ayuda"+ex);
 
      }
 
