@@ -1,4 +1,5 @@
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -41,7 +42,9 @@ import javax.swing.text.MaskFormatter;
 public class EvaluableV3 extends javax.swing.JFrame {
     
     String[] buttonsSiNo = {"Si", "No"};
-    String ruta=System.getProperty("user.dir")+"\\log.txt";
+    String ruta=System.getProperty("user.dir");
+    String log="\\log.txt";
+    String help="\\help.pdf";
     DateFormat formatof = new SimpleDateFormat("yyyy-MM-dd");
     DateFormat formatofh = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     String []tareas;
@@ -429,6 +432,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
         habilitarTrigger = new javax.swing.JMenuItem();
         deshabilitarTrigger = new javax.swing.JMenuItem();
         borrarTablaEmpMod = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1001,6 +1006,18 @@ public class EvaluableV3 extends javax.swing.JFrame {
 
         jMenuBar1.add(Herramientas);
 
+        jMenu2.setText("Ayuda");
+
+        jMenuItem1.setText("Consultar Ayuda");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1091,7 +1108,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     private void verLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verLogActionPerformed
     areatexto.setText("");
         try {
-            BufferedReader in  = new BufferedReader (new FileReader(ruta));
+            BufferedReader in  = new BufferedReader (new FileReader(ruta+log));
             String frase;
             frase = in.readLine();
             
@@ -1552,7 +1569,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     private void verLogBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verLogBotonActionPerformed
     areatexto.setText("");
         try {
-            BufferedReader in  = new BufferedReader (new FileReader(ruta)); System.out.println(ruta);
+            BufferedReader in  = new BufferedReader (new FileReader(ruta+log)); System.out.println(ruta);
             String frase;
             frase = in.readLine();
 
@@ -1608,6 +1625,11 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
         }
         else{toastMessage("Aviso","Operación cancelada por el usuario.");}
     }//GEN-LAST:event_borrarTablaEmpModActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+            abrirarchivo(ruta+help);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1690,7 +1712,9 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -1736,7 +1760,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     //Funcion para comenzar el Log. Lo crea si no existe en el working directory.
     private void startLog(){
     
-    File archivo = new File(ruta);
+    File archivo = new File(ruta+log);
     BufferedWriter bw;
       
         try {
@@ -1758,7 +1782,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     
     //Funcion para añadir texto al log.
     public void addLog(String registro){
-    File archivo = new File(ruta);
+    File archivo = new File(ruta+log);
     BufferedWriter bw;
       
         try {
@@ -1963,6 +1987,22 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
         }
         return bool;
     } 
+    
+    
+    public void abrirarchivo(String archivo){
+
+     try {
+
+            File objetofile = new File (archivo);
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);
+
+     }
+
+}  
     
    
     
