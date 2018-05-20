@@ -52,11 +52,6 @@ public class EvaluableV3 extends javax.swing.JFrame {
                
         startLog();
         
-        
-
-        
-        
-        
         java.util.Date now = new java.util.Date();
 	System.out.println("FECHA SIMPLE: " + formatofh.format(now)); 
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -65,12 +60,11 @@ public class EvaluableV3 extends javax.swing.JFrame {
         departamentos = new ConectaBD("departamento");
         auxiliar = new ConectaBD("auxiliar");
         
-        
         //this.setUndecorated(true);
-        iniciarTareas();    
         initComponents();   //Inicia todos los componentes.
-        Fillcombos();
-           
+        Fillcombos();       //Rellenamos los combos
+        iniciarTareas();    //y guardamos todas las tareas.
+        
         try 
         {
             empleados.conecta(usuario,contrasena); // Conectamos con la base de datos
@@ -100,8 +94,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         }
     }
     
-    private void printEmpleados(ResultSet rs) throws SQLException
-    {
+    private void printEmpleados(ResultSet rs) throws SQLException{
         tituloE.setText("LISTADO DE EMPLEADOS");
         empleados.esprimero();
         empleados.esultimo();
@@ -145,8 +138,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         }
     }    
 
-    private void printDepartamentos(ResultSet rs) throws SQLException
-    {
+    private void printDepartamentos(ResultSet rs) throws SQLException{
         tituloD.setText("LISTADO DE DEPARTAMENTOS");
         enabledFields(false,'d');            //Deshabilitar los campos de la pestaña Departamentos.
         botoneraConfirmacion(false,'d');    // Dehabilitamos los botones Aceptar/Cancelar
@@ -174,7 +166,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         }
     }
 
-        //Condiciones cuando se activan los campos para insertar valores!!!
+    //Condiciones cuando se activan los campos para insertar valores!!!
     private void enabledFields(boolean estado,char c){
         
         if(c=='e'){
@@ -207,7 +199,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         }
     }
     
-     //Metodo para limpiar todos los campos en caso de insertar una nueva fila 
+    //Metodo para limpiar todos los campos en caso de insertar una nueva fila 
     private void cleanFields(char c){
         if(c=='e'){
             numE.setText("");
@@ -225,8 +217,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     }   
     
     // Método para activar o desactivar los botones de Aceptar y Cancelar
-    private void botoneraConfirmacion(boolean estado,char c) 
-    {
+    private void botoneraConfirmacion(boolean estado,char c) {
         if(c=='e'){
             aceptarE.setEnabled(estado);
             cancelarE.setEnabled(estado);}
@@ -237,8 +228,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     }    
     
     // Método para activar o deactivar los botones de navegación. Actualizar y borrar incluido.
-    private void botoneraNavegacion(boolean estado,char c) 
-    {
+    private void botoneraNavegacion(boolean estado,char c) {
         // Activamos o desactivamos los botones de navegación
         if(c=='e'){
             primeroE.setEnabled(estado);
@@ -418,6 +408,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         desinstalarDependencia = new javax.swing.JMenuItem();
         habilitarTrigger = new javax.swing.JMenuItem();
         deshabilitarTrigger = new javax.swing.JMenuItem();
+        borrarTablaEmpMod = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -896,6 +887,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         Archivo.setBackground(new java.awt.Color(204, 204, 204));
         Archivo.setText("Archivo");
 
+        verLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, 0));
         verLog.setText("Ver Log");
         verLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -904,6 +896,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         Archivo.add(verLog);
 
+        BorrarLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, 0));
         BorrarLog.setText("Borrar Log");
         BorrarLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -913,6 +906,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         Archivo.add(BorrarLog);
         Archivo.add(jSeparator2);
 
+        Salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, 0));
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -927,6 +921,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         Herramientas.setText("Herramientas");
         Herramientas.add(jSeparator1);
 
+        configurarBBDD.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
         configurarBBDD.setText("Configurar BBDD");
         configurarBBDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -937,6 +932,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
 
         jMenu1.setText("Dependencias BBDD");
 
+        InstalarDependencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, 0));
         InstalarDependencia.setText("Instalar dependencias");
         InstalarDependencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -945,6 +941,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         jMenu1.add(InstalarDependencia);
 
+        desinstalarDependencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, 0));
         desinstalarDependencia.setText("Desinstalar dependencias");
         desinstalarDependencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -953,6 +950,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         jMenu1.add(desinstalarDependencia);
 
+        habilitarTrigger.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, 0));
         habilitarTrigger.setText("Activar Trigger");
         habilitarTrigger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -961,6 +959,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         jMenu1.add(habilitarTrigger);
 
+        deshabilitarTrigger.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, 0));
         deshabilitarTrigger.setText("Desactivar Trigger");
         deshabilitarTrigger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -970,6 +969,15 @@ public class EvaluableV3 extends javax.swing.JFrame {
         jMenu1.add(deshabilitarTrigger);
 
         Herramientas.add(jMenu1);
+
+        borrarTablaEmpMod.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, 0));
+        borrarTablaEmpMod.setText("Borrar tabla Empleados_Modificados");
+        borrarTablaEmpMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarTablaEmpModActionPerformed(evt);
+            }
+        });
+        Herramientas.add(borrarTablaEmpMod);
 
         jMenuBar1.add(Herramientas);
 
@@ -1037,6 +1045,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
             if (opc == 0){
                 departamentos.borrar(); // Borramos el cliente seleccionado
                 printDepartamentos(departamentos.rs); // Mostramos el siguiente registro
+                System.out.println("Departamento borrado");
            java.util.Date now = new java.util.Date();addLog( formatofh.format(now)+ " departamento borrado" );
 
             }
@@ -1215,10 +1224,12 @@ public class EvaluableV3 extends javax.swing.JFrame {
                     empleados.irAlPrimero();
                     printEmpleados(empleados.rs);
                     java.util.Date now = new java.util.Date(); addLog( formatofh.format(now)+ " Buscar empleado por tarea" );
-                    }
+                    jTabbedPane.setSelectedIndex(0);    
+                    break;
+                }
                 else
                     toastMessage("Aviso","Operacion cancelada.");
-                break;
+                
                 }
                 catch (SQLException ex) 
                 {
@@ -1239,6 +1250,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                     filtro.setText(" FILTRO activado:\nSalario entre"+num1+" y "+num2); //filtro activado
                     printEmpleados(empleados.rs);
                     java.util.Date now = new java.util.Date(); addLog( formatofh.format(now)+ " Buscar empleado por salario" );
+                    jTabbedPane.setSelectedIndex(0);
                     break;
                 }
         
@@ -1250,7 +1262,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 } 
         default: toastMessage("Aviso","Operacion cancelada.");
     }
-            jTabbedPane.setSelectedIndex(0);
+            
     }//GEN-LAST:event_buscarEmpleadosActionPerformed
 
     private void aceptarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarDActionPerformed
@@ -1443,11 +1455,11 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 //Ademas se pasa todo a uppercase!
         String numE_ = numE.getText().toUpperCase();                  
         String nombreE_= nombreE.getText().toUpperCase();           
-        String jefe_= (String) jefeCB.getSelectedItem();  jefe_ = jefe_.toUpperCase();
+        String jefe_= (String) jefeCB.getSelectedItem();  jefe_ = jefe_;
         String tarea_= tarea.getText().toUpperCase();                
-        String fecha_ = fecha.getText().toUpperCase();              
+        String fecha_ = fecha.getText();              
         String departamento_= (String) departamentoCB.getSelectedItem(); departamento_=departamento_.toUpperCase();
-        String salario_= salario.getText().toUpperCase();            
+        String salario_= salario.getText();            
 
         //Volvemos a habilitar la botonera de navegacion y deshabilitar la de confirmacion
         botoneraNavegacion(true,'e');
@@ -1467,21 +1479,14 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 //refrescarE.doClick(); // Refrescar la consulta de empleados.
             printEmpleados(empleados.rs); // Mostramos los datos
 
-            /*
-            
-            else if(validaDepartamento(departamento_)==0)
-            toastMessage("Error SQL FOREIGN KEY","El numero de departamento no existe.\nAsegurese de que numero de departamento exista, o dejelo en blanco.");
-            else if(existeEmpleado(Integer.parseInt(jefe_))==1)
-            {*/
-
-                /*}
+            }
             catch (SQLIntegrityConstraintViolationException ex){
                 ex.printStackTrace();
                 toastMessage("Error SQL","El numero de departamento suministrado no existe.\nIntentelo de nuevo y asegurese de que exista el departamento asignado.");
             }
             catch (SQLException ex){
                 ex.printStackTrace();
-                toastMessage("Aviso SQL","Error en la insercion/actualizacion a la BBDD"); */
+                toastMessage("Aviso SQL","Error en la insercion/actualizacion a la BBDD");
             }
             catch (Exception ex)
             {
@@ -1530,7 +1535,11 @@ public class EvaluableV3 extends javax.swing.JFrame {
     }//GEN-LAST:event_verLogBotonActionPerformed
 
     private void BorrarLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarLogActionPerformed
-    File fichero = new File(ruta);
+
+        int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar todos los registros del LOG??????\n\n   No hay marcha atras","AVISO", JOptionPane.YES_NO_OPTION);
+        System.out.println("Opcion:"+opc);
+        if(opc==0){
+        File fichero = new File(ruta);
         
         if (!fichero.exists()) {
             toastMessage("Aviso","El Log no se ha podido borrar porque no existía.");
@@ -1539,8 +1548,27 @@ public class EvaluableV3 extends javax.swing.JFrame {
         fichero.delete();
         toastMessage("Aviso","El Log ha sido eliminado.");
         System.out.println("El archivo data fue eliminado.");
-    }
+    }}
+        else{}
     }//GEN-LAST:event_BorrarLogActionPerformed
+
+    private void borrarTablaEmpModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarTablaEmpModActionPerformed
+int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar todos los registros la tabla\n\n    EMPLEADOS_MODIFICADOS???\n\n    No hay marcha atras","ATENCION", JOptionPane.YES_NO_OPTION);
+        System.out.println("Opcion:"+opc);
+        if(opc==0){
+            
+            try {
+                auxiliar.conecta(usuario,contrasena);
+                auxiliar.crearSentencias();
+                auxiliar.ejecutaSQLq("delete from empleados_modificados");
+                auxiliar.cerrarConexion();
+                toastMessage("Aviso SQL","Tabla EMPLEADOS_MODIFICADOS eliminada!!");
+            } catch (SQLException ex) {
+                toastMessage("Aviso SQL","No se pudo eliminar la tabla EMPLEADOS_MODIFICADOS.");}
+        
+        }
+        else{toastMessage("Aviso","Operación cancelada por el usuario.");}
+    }//GEN-LAST:event_borrarTablaEmpModActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1597,6 +1625,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     private javax.swing.JTextArea areatexto;
     private javax.swing.JButton borrarD;
     private javax.swing.JButton borrarE;
+    private javax.swing.JMenuItem borrarTablaEmpMod;
     private javax.swing.JButton buscarEmpleados;
     private javax.swing.JButton cancelarD;
     private javax.swing.JButton cancelarE;
@@ -1755,32 +1784,32 @@ public class EvaluableV3 extends javax.swing.JFrame {
     return -1;
     }
     
-      //Funcion que rellena todos los combos automaticamente.  
+     //Funcion que rellena todos los combos automaticamente.  
     private void Fillcombos(){
             String item;
             try {
             auxiliar.conecta(usuario,contrasena);
             auxiliar.crearSentencias();
             //Rellenamos el combo de jefes, donde cualquier empleado puede serlo en principio.
-            auxiliar.ejecutaSQLq("select num_emp from empleado");
+            auxiliar.ejecutaSQLq("select num_emp from empleado");  //No hace falta usar 'distinct' pues num_emp es PK.
             auxiliar.irAlFinal();
             int total=auxiliar.rs.getRow();
             auxiliar.irAlPrimero();
             tareas=new String[total];  
             jefeCB.addItem("0");
             for (int i=0;i<total;i++){
-                item=tareas[i]=auxiliar.rs.getString(1);  //Almacenamos la tarea en la variable global tareas[], que es un array de Strings 
+                item=auxiliar.rs.getString(1);  //Almacenamos la tarea en la variable global tareas[], que es un array de Strings 
                 jefeCB.addItem(item);
                 auxiliar.irAlSiguiente();}
             
             //Rellenamos el combo de departamentos.
-            auxiliar.ejecutaSQLq("select distinct nombre_dpto from dpto");
+            auxiliar.ejecutaSQLq("select distinct num_dpto from dpto");
             auxiliar.irAlFinal();
             total=auxiliar.rs.getRow();
             auxiliar.irAlPrimero();
             tareas=new String[total];  
             for (int i=0;i<total;i++){
-                item=tareas[i]=auxiliar.rs.getString(1);  //Almacenamos la tarea en la variable global tareas[], que es un array de Strings 
+                item=auxiliar.rs.getString(1);  //Almacenamos la tarea en la variable global tareas[], que es un array de Strings 
                 departamentoCB.addItem(item);
                 auxiliar.irAlSiguiente();}
             
@@ -1861,7 +1890,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     //Funcion que habilita el trigger de la BBDD automaticamente.
     public boolean habilitarTrigger(){
         boolean bool;
-                try {
+        try {
             auxiliar.conecta(usuario,contrasena);
             auxiliar.crearSentencias();
             String sqla= "ALTER TRIGGER "+triggerBBDD+" enable";  
