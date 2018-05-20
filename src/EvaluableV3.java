@@ -19,11 +19,20 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*      A MEJORAR
+ *      + Capturar error  en la busqueda de introducir salario
+ *      + Colocar el LOG en el lugar correcto, que lo registre cuando sea una operacion exitosa
+ *      + Instalar las dependencias automaticamente (Desde el menu).
+ *      + Gestionar correctamente las UNIQUE KEY, PRIMARY KEY!
+ *      + Controlar los input missmatch en los edit text.
+ *      + El string de tareas hacerlo automatico mediante una consulta.
+ *      + Las tareas han de introducirse en mayusculas para que se reconozcan!!!
+ *      + Pasarlo todo a mayusculas
+ *      + Eliminacion/modificacion de empleados o departamentos, gestionar la eleccion correcta. 
+ *
+ *      - introducir salario minimo y maximo en un solo joptionpane y vigilar su coherencia min < max
+ *      - Al insertar algo, siempre se inserta en penultima posición.
+*/
 
 /**
  *
@@ -41,6 +50,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
     public static ConectaBD auxiliar;       //Conexion a usar para usar y desconectar.
     String usuario="plsql";
     String contrasena="plsql";
+    String puerto="1521";
     String triggerBBDD="triggerAdrian";  //
     String funcionBBDD="funcionAdrian";
     //public static String current; //variable que nos indica el elemento que se muestra en curso (empleado o departamento)
@@ -49,7 +59,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public EvaluableV3() {
-               
+        
         startLog();
         
         java.util.Date now = new java.util.Date();
@@ -65,10 +75,20 @@ public class EvaluableV3 extends javax.swing.JFrame {
         Fillcombos();       //Rellenamos los combos
         iniciarTareas();    //y guardamos todas las tareas.
         
+        JOptionPane.showMessageDialog(null, "Bienvenido a 'Evaluable V2.2', software para operar sobre una BBDD en Oracle."
+                + "\n\nDicho software tiene una opción para instalar el trigger y la funcion en PLSQL para Oracle."
+                + "\nEsto hace que no sea necesario exportar la base de datos del alumno, puesto que ya está diseñado"
+                + "\npara funcionar en cualquier TABLESPACE donde previamente deben estar creadas las tablas."
+                + "\n\nSe conecta con una BBDD local, donde se le puede configurar los credenciales de loggin y el puerto."
+                + "\nEl usuario por defecto es plsql, (al igual que la contraseña), y el puerto por defecto es el 1521."
+                + "\nSi desea cambiar dicha configuración vaya a 'Herramientas => Configurar BBDD'."
+                + "\n\nPulse aceptar para empezar a evaluar el programa.", "Bienvenido", JOptionPane.DEFAULT_OPTION, null);
+      
+        
         try 
         {
-            empleados.conecta(usuario,contrasena); // Conectamos con la base de datos
-            departamentos.conecta(usuario,contrasena); // Conectamos con la base de datos
+            empleados.conecta(usuario,contrasena,puerto); // Conectamos con la base de datos
+            departamentos.conecta(usuario,contrasena,puerto); // Conectamos con la base de datos
             empleados.crearSentencias(); // Creamos las sentaencias para empleado    
             departamentos.crearSentencias(); // Creamos las sentaencias para dpto  
  
@@ -1091,8 +1111,19 @@ public class EvaluableV3 extends javax.swing.JFrame {
     }//GEN-LAST:event_verLogActionPerformed
 
     private void configurarBBDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configurarBBDDActionPerformed
-            usuario=JOptionPane.showInputDialog("Introduzca usuario");
-            contrasena=JOptionPane.showInputDialog("Introduzca contraseña"); 
+        String input;    
+        input=JOptionPane.showInputDialog("Introduzca usuario");
+        if(input!=null && !input.equals(""))
+            usuario=input;
+        
+        input=JOptionPane.showInputDialog("Introduzca contraseña");
+        if(input!=null && !input.equals(""))
+            usuario=input;
+        
+        input=JOptionPane.showInputDialog("Introduzca el puerto de la BBDD localhost");
+        if(input!=null && !input.equals(""))
+            puerto=input;  
+        
     }//GEN-LAST:event_configurarBBDDActionPerformed
 
     private void habilitarTriggerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habilitarTriggerActionPerformed
@@ -1148,6 +1179,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         try {
             departamentos.irAlPrimero();
             printDepartamentos(departamentos.rs);
+            System.out.println("Al inicio de Departamento");
         } catch (SQLException ex) {
             Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1157,6 +1189,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         try {
             departamentos.irAlAnterior();
             printDepartamentos(departamentos.rs);
+            System.out.println("Retrocede Departamento");
         } catch (SQLException ex) {
             Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1166,6 +1199,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         try {
             departamentos.irAlSiguiente();
             printDepartamentos(departamentos.rs);
+            System.out.println("Avanza Departamento");
         } catch (SQLException ex) {
             Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1175,6 +1209,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         try {
             departamentos.irAlFinal();
             printDepartamentos(departamentos.rs);
+            System.out.println("Avanza a final Departamentos");
         } catch (SQLException ex) {
             Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1298,7 +1333,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         areatexto.setText(areatexto.getText()+"\n-------------------------------------------------------------------------------------------------------------------------------------------------------------");
         String sqls= "select empleados_modificados.* from empleados_modificados";
         try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             auxiliar.ejecutaSQLq(sqls);
             auxiliar.rs.last();
@@ -1313,7 +1348,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No hay modificaciones en salario registradas", "Warning",JOptionPane.WARNING_MESSAGE);
             auxiliar.cerrarConexion();
         } catch (SQLException ex) {
-            toastMessage("Error SQL","Hubo algun problema con la BBDD");
+            toastMessage("Error SQL","Hubo algun problema con la BBDD.\nVerifique su configuracion.");
             //Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (Exception e) 
@@ -1337,6 +1372,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         {
             empleados.irAlFinal();
             printEmpleados(empleados.rs);
+            System.out.println("A final de empleados");
         }
         catch (SQLException ex)
         {
@@ -1350,6 +1386,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         {
             empleados.irAlSiguiente();
             printEmpleados(empleados.rs);
+            System.out.println("Avanza empleado");
         }
         catch (SQLException ex)
         {
@@ -1361,6 +1398,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         try {
             empleados.irAlAnterior();
             printEmpleados(empleados.rs);
+            System.out.println("Retrocede empleado");
         } catch (SQLException ex) {
             Logger.getLogger(EvaluableV3.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1404,6 +1442,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         try {
             empleados.irAlPrimero();
             printEmpleados(empleados.rs);
+            System.out.println("A inicio de empleados");
         }
         catch (Exception e)
         {
@@ -1558,7 +1597,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
         if(opc==0){
             
             try {
-                auxiliar.conecta(usuario,contrasena);
+                auxiliar.conecta(usuario,contrasena,puerto);
                 auxiliar.crearSentencias();
                 auxiliar.ejecutaSQLq("delete from empleados_modificados");
                 auxiliar.cerrarConexion();
@@ -1600,7 +1639,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+                public void run() {
                 new EvaluableV3().setVisible(true);
             }
         });
@@ -1763,7 +1802,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     //Devuelve 1 si el empleado existe, 0 si no. ( y -1 en algun caso raro. xD )
     private int existeEmpleado(int numero){
         try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             auxiliar.ejecutaSQLq("select distinct empleado.num_emp from empleado");
             auxiliar.irAlFinal();
@@ -1788,7 +1827,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     private void Fillcombos(){
             String item;
             try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             //Rellenamos el combo de jefes, donde cualquier empleado puede serlo en principio.
             auxiliar.ejecutaSQLq("select num_emp from empleado");  //No hace falta usar 'distinct' pues num_emp es PK.
@@ -1822,7 +1861,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     //(Funcion para recoger automaticamente todas las tareas en la BBD) Se usa para la consulta de gasto por tareas.
     private void iniciarTareas(){
              try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             auxiliar.ejecutaSQLq("select distinct tarea from empleado");
             auxiliar.irAlFinal();
@@ -1841,7 +1880,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     public boolean instalarDependencias(){
             boolean bool;
         try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             String sqlt= "CREATE OR REPLACE FUNCTION "+funcionBBDD+" (tarea_ IN VARCHAR2) RETURN NUMBER IS suma NUMBER:=0; BEGIN SELECT SUM(salario) into suma from empleado WHERE tarea=tarea_; RETURN suma; END;";
             auxiliar.ejecutaSQL(sqlt);
@@ -1857,7 +1896,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
             bool= true;
          } catch (SQLException ex) {
              bool=false;
-            toastMessage("Aviso SQL","Hubo algun problema al instalar las dependencias");
+            toastMessage("Aviso SQL","Hubo algun problema al instalar las dependencias en la BBDD.\nVerifique su configuracion.");
             //Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bool;
@@ -1868,7 +1907,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
             boolean bool;
         
         try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             String sqlt= "drop TRIGGER "+triggerBBDD+"";
             auxiliar.ejecutaSQL(sqlt);
@@ -1881,7 +1920,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
             bool=true;
         }catch (SQLException ex) {
             bool=false;
-            toastMessage("Aviso SQL","Hubo algun problema al desinstalar las dependencias");
+            toastMessage("Aviso SQL","Hubo algun problema al desinstalar las dependencias en la BBDD.\nVerifique su configuracion.");
            // Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
                 return bool;
@@ -1891,7 +1930,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     public boolean habilitarTrigger(){
         boolean bool;
         try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             String sqla= "ALTER TRIGGER "+triggerBBDD+" enable";  
             auxiliar.ejecutaSQL(sqla);
@@ -1910,7 +1949,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
     public boolean deshabilitarTrigger(){
         boolean bool;
                 try {
-            auxiliar.conecta(usuario,contrasena);
+            auxiliar.conecta(usuario,contrasena,puerto);
             auxiliar.crearSentencias();
             String sqla= "ALTER TRIGGER "+triggerBBDD+" disable";  
             auxiliar.ejecutaSQL(sqla);
