@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class ConectaBD { 
       // Declaramos los atributos
-    //private String nombre;          //Al iniciar se especificara el nombre de la tabla, para luego mostarrlo en el Log.
+    private String nombre;          //Al iniciar se especificara el nombre de la tabla, para luego mostarrlo en el Log.
     Connection conn; // Para crear la conexión de la base de datos
     Statement sentenciaSQL; // Para realizar las operaciones SQL
     ResultSet rs; // Para almacenar los datos devueltos en la consulta empleado
@@ -27,16 +27,15 @@ public class ConectaBD {
     String contrasena = "plsql";
     boolean nuevoRegistro;
 
-    public ConectaBD(String nom) 
-    {
+    public ConectaBD(String nom) {
+        nombre = nom;
         conn = null; 
         sentenciaSQL = null; 
         rs = null;
         nuevoRegistro = false;
     }  
     
-    public void conecta(String usuario, String contrasena) throws SQLException 
-    {
+    public void conecta(String usuario, String contrasena) throws SQLException {
         String jdbcUrl;
         try {
             //Registramos el Driver de Oracle
@@ -64,16 +63,14 @@ public class ConectaBD {
         }
     }
     
-    public void crearSentencias() throws java.sql.SQLException
-    {
+    public void crearSentencias() throws java.sql.SQLException{
         // Crear una sentencia para enviar consultas a la base de datos
         sentenciaSQL = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
         System.out.println("\nSentencia creada con éxito.");
     }
     
     // Método para cerrar la conexión de la base de datos
-    public void cerrarConexion() throws java.sql.SQLException
-    {
+    public void cerrarConexion() throws java.sql.SQLException  {
         // Cerramos la conexión con la BBDD
         if (rs != null) 
             rs.close();
@@ -88,21 +85,18 @@ public class ConectaBD {
     }
     
     // Método para ejecutar la sentencia sql pasada por parámetro
-    public void ejecutaSQLq(String sql) throws java.sql.SQLException
-    {
+    public void ejecutaSQLq(String sql) throws java.sql.SQLException{
         // Realizamos la consulta y obtenemos los resultados
         rs = sentenciaSQL.executeQuery(sql);
     }
     
-    public boolean ejecutaSQL(String sql) throws java.sql.SQLException
-    {
+    public boolean ejecutaSQL(String sql) throws java.sql.SQLException{
         // Realizamos la consulta y obtenemos los resultados
         return sentenciaSQL.execute(sql);
     }
     
     // Métodos para obtener los diferentes registros de la tabla
-    public void irAlFinal() throws java.sql.SQLException
-    {
+    public void irAlFinal() throws java.sql.SQLException{
         try 
         {
             rs.last(); // Obtenemos el último registro
@@ -113,8 +107,7 @@ public class ConectaBD {
         }
     }
     
-    public void irAlSiguiente() throws java.sql.SQLException
-    {
+    public void irAlSiguiente() throws java.sql.SQLException{
         try 
         {
             rs.next(); // Obtenemos el siguiente registro
@@ -125,8 +118,7 @@ public class ConectaBD {
         }
     }
 
-    public void irAlAnterior() throws java.sql.SQLException
-    {
+    public void irAlAnterior() throws java.sql.SQLException{
         try 
         {
             rs.previous(); // Obtenemos el registro anterior
@@ -149,8 +141,7 @@ public class ConectaBD {
     }
   
     // Método para insertar un nuevo1 registro
-    public void nuevo() throws java.sql.SQLException
-    {
+    public void nuevo() throws java.sql.SQLException{
         nuevoRegistro = true;
         
         try 
@@ -165,8 +156,7 @@ public class ConectaBD {
     }
     
   
-    public void aceptar(int numemp, String nomb, String tarea,String jefe,String fecha, String salario, String departamento) throws java.sql.SQLException
-    {   
+    public void aceptar(int numemp, String nomb, String tarea,String jefe,String fecha, String salario, String departamento) throws java.sql.SQLException{   
         Float salariof; 
         System.out.println("Dentro de aceptar.\nDepartamento:"+departamento+".\t"+"Jefe:"+jefe+".\t"+"NumE:"+numemp+".\t"+"Salario:"+salario+".\t"+"Date:"+fecha+".\t");
 
@@ -184,9 +174,10 @@ public class ConectaBD {
         if (jefe.matches("[0-9]+") && !jefe.equals("0"))        //Si tiene digitos y no es el CERO 
             rs.updateInt("jefe", Integer.parseInt(jefe));       //parseamos y actualizamos su valor
         if (fecha.matches("^\\d{4}-\\d{2}-\\d{2}"))   {        //Esta condicion es un poco "fula", se puede mejorar.... pero para salir del paso vale...
-                System.out.println("matches funciona");
+                
                 Date fecha_;
                 fecha_=Date.valueOf(fecha);
+                System.out.println("matches funciona. Date:"+fecha_+".");
                 rs.updateDate("fecha_alta", fecha_);} 
         else
             JOptionPane.showMessageDialog(null, "Fecha no actualizada porque no se introdujo correctamente.");
@@ -211,18 +202,17 @@ public class ConectaBD {
         if (nuevoRegistro) {
             rs.insertRow(); // Insertamos el registro
             rs.last(); // Nos vamos al final de todos los registros
-            System.out.println("Nuevo registro empleado introducido");
+            System.out.println("Nuevo registro "+nombre+" introducido");
         }
         else{
             rs.updateRow(); // Si la variable nuevoRegistro es false actualizamos el registro
-            System.out.println("Registro de empleado actualizado");
+            System.out.println("Registro de "+nombre+" actualizado");
         }
     }
       // Método para aceptar1 la operación a realizar (Insertar o editar)
     
     
-    public void aceptar(int num, String nomb, String localidad) throws java.sql.SQLException
-    {
+    public void aceptar(int num, String nomb, String localidad) throws java.sql.SQLException{
         // Rellenamos los valores a insertar
         rs.updateInt("num_dpto", num);
         rs.updateString("nombre_dpto", nomb);
@@ -231,17 +221,15 @@ public class ConectaBD {
         if (nuevoRegistro) {
             rs.insertRow(); // Insertamos el registro
             rs.last(); // Nos vamos al final de todos los registros
-            System.out.println("Nuevo registro empleado introducido");
+            System.out.println("Nuevo registro "+nombre+" introducido");
         }
         else{
             rs.updateRow(); // Si la variable nuevoRegistro2 es false actualizamos el registro
-            System.out.println("Registro de empleado actualizado");}
+            System.out.println("Registro de "+nombre+" actualizado");}
     }    
     
     // Método para borrar el registro seleccionado
-    public void borrar() throws java.sql.SQLException
-            
-    {
+    public void borrar() throws java.sql.SQLException{
         rs.deleteRow(); // Borramos el registro
         rs.moveToCurrentRow();
         if(esultimo())              //Para que no se salga del rango
@@ -249,13 +237,12 @@ public class ConectaBD {
         if(esprimero())
             rs.next();
         rs.next(); //Nos vamos uno atras porque me da la gana
-        System.out.println("Registro eliminado");
+        System.out.println("Registro de "+nombre+" eliminado");
 
     }    
     
     // Método para cancelar la acción nos vale para los dos RS
-    public void cancela() throws java.sql.SQLException
-    {
+    public void cancela() throws java.sql.SQLException{
         rs.cancelRowUpdates(); // Cancelamos la operación
         System.out.println("Operacion de registro cancelada");
     }
@@ -266,7 +253,9 @@ public class ConectaBD {
         pos=rs.getRow();
         rs.last();
         size=rs.getRow();
+        System.out.println("es ultimo antes");
         rs.absolute(pos);
+        System.out.println("es ultimo despues");
        return (size==pos);
         
     }
@@ -275,7 +264,9 @@ public class ConectaBD {
         int pos;
         pos=rs.getRow();
         rs.first();
+        System.out.println("Es primero antes");
         rs.absolute(pos);
+        System.out.println("Es primero despues");
         return (1==pos);
         
     }
