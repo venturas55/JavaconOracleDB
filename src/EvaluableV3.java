@@ -1865,7 +1865,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
                 jefeCB.addItem(item);
                 auxiliar.irAlSiguiente();}
             
-            //Rellenamos el combo de departamentos.
+            //Rellenamos el combo de departamentos..
             auxiliar.ejecutaSQLq("select distinct num_dpto from dpto");
             auxiliar.irAlFinal();
             total=auxiliar.rs.getRow();
