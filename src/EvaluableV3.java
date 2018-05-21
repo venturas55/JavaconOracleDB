@@ -912,7 +912,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         Archivo.setBackground(new java.awt.Color(204, 204, 204));
         Archivo.setText("Archivo");
 
-        verLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, 0));
+        verLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         verLog.setText("Ver Log");
         verLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -921,7 +921,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         Archivo.add(verLog);
 
-        BorrarLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, 0));
+        BorrarLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         BorrarLog.setText("Borrar Log");
         BorrarLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -931,7 +931,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         Archivo.add(BorrarLog);
         Archivo.add(jSeparator2);
 
-        Salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, 0));
+        Salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -946,7 +946,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         Herramientas.setText("Herramientas");
         Herramientas.add(jSeparator1);
 
-        configurarBBDD.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
+        configurarBBDD.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         configurarBBDD.setText("Configurar BBDD");
         configurarBBDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -957,7 +957,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
 
         jMenu1.setText("Dependencias BBDD");
 
-        InstalarDependencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, 0));
+        InstalarDependencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         InstalarDependencia.setText("Instalar dependencias");
         InstalarDependencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -966,7 +966,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         jMenu1.add(InstalarDependencia);
 
-        desinstalarDependencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, 0));
+        desinstalarDependencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         desinstalarDependencia.setText("Desinstalar dependencias");
         desinstalarDependencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -975,7 +975,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         jMenu1.add(desinstalarDependencia);
 
-        habilitarTrigger.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, 0));
+        habilitarTrigger.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         habilitarTrigger.setText("Activar Trigger");
         habilitarTrigger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -984,7 +984,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
         });
         jMenu1.add(habilitarTrigger);
 
-        deshabilitarTrigger.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, 0));
+        deshabilitarTrigger.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         deshabilitarTrigger.setText("Desactivar Trigger");
         deshabilitarTrigger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -995,7 +995,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
 
         Herramientas.add(jMenu1);
 
-        borrarTablaEmpMod.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, 0));
+        borrarTablaEmpMod.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         borrarTablaEmpMod.setText("Borrar tabla Empleados_Modificados");
         borrarTablaEmpMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

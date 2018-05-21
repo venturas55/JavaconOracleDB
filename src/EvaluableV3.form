@@ -20,7 +20,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="verLog">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="L"/>
+                  <KeyStroke key="Ctrl+L"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver Log"/>
               </Properties>
@@ -31,7 +31,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="BorrarLog">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="B"/>
+                  <KeyStroke key="Ctrl+B"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Borrar Log"/>
               </Properties>
@@ -44,7 +44,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="Salir">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="S"/>
+                  <KeyStroke key="Ctrl+S"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
@@ -67,7 +67,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="configurarBBDD">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="C"/>
+                  <KeyStroke key="Ctrl+C"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Configurar BBDD"/>
               </Properties>
@@ -83,7 +83,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="InstalarDependencia">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="I"/>
+                      <KeyStroke key="Ctrl+I"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Instalar dependencias"/>
                   </Properties>
@@ -94,7 +94,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="desinstalarDependencia">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="D"/>
+                      <KeyStroke key="Ctrl+D"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Desinstalar dependencias"/>
                   </Properties>
@@ -105,7 +105,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="habilitarTrigger">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="T"/>
+                      <KeyStroke key="Ctrl+T"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Activar Trigger"/>
                   </Properties>
@@ -116,7 +116,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="deshabilitarTrigger">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="R"/>
+                      <KeyStroke key="Ctrl+R"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Desactivar Trigger"/>
                   </Properties>
@@ -129,7 +129,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="borrarTablaEmpMod">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="T"/>
+                  <KeyStroke key="Ctrl+T"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Borrar tabla Empleados_Modificados"/>
               </Properties>
