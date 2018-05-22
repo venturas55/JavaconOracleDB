@@ -1511,7 +1511,7 @@ public class EvaluableV3 extends javax.swing.JFrame {
                 //Ademas se pasa todo a uppercase!
         String numE_ = numE.getText().toUpperCase();                  
         String nombreE_= nombreE.getText().toUpperCase();           
-        String jefe_= (String) jefeCB.getSelectedItem();  jefe_ = jefe_;
+        String jefe_= (String) jefeCB.getSelectedItem();
         String tarea_= tarea.getText().toUpperCase();                
         String fecha_ = fecha.getText();              
         String departamento_= (String) departamentoCB.getSelectedItem(); departamento_=departamento_.toUpperCase();
@@ -1538,7 +1538,8 @@ public class EvaluableV3 extends javax.swing.JFrame {
             }
             catch (SQLIntegrityConstraintViolationException ex){
                 ex.printStackTrace();
-                toastMessage("Error SQL","El numero de departamento suministrado no existe.\nIntentelo de nuevo y asegurese de que exista el departamento asignado.");
+                toastMessage("Error SQL","\nLa operación no se ha podido llevar a cabo debido a un error de integridad en la base de datos.\n"
+                        + "Se ha violado una restriccion de la BBDD.Intentelo de nuevo.");
             }
             catch (SQLException ex){
                 ex.printStackTrace();
@@ -1865,7 +1866,7 @@ int opc= JOptionPane.showConfirmDialog (null, "Está seguro que desea eliminar t
                 jefeCB.addItem(item);
                 auxiliar.irAlSiguiente();}
             
-            //Rellenamos el combo de departamentos..
+            //Rellenamos el combo de departamentos.
             auxiliar.ejecutaSQLq("select distinct num_dpto from dpto");
             auxiliar.irAlFinal();
             total=auxiliar.rs.getRow();
