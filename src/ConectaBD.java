@@ -147,7 +147,7 @@ public class ConectaBD {
         
         try 
         {
-            rs.last(); //para que inserte en la ultima fila, parece ser. Si no, inserta siempre en la penultima (Por que?)
+            rs.afterLast(); //para que inserte en la ultima fila, parece ser. Si no, inserta siempre en la penultima (Por que?)
             rs.moveToInsertRow(); // Nos preparamos para insertar el nuevo1 registro
         }
         catch (Exception e) 
@@ -216,8 +216,8 @@ public class ConectaBD {
     public void aceptar(int num, String nomb, String localidad) throws java.sql.SQLException{
         // Rellenamos los valores a insertar
         rs.updateInt("num_dpto", num);
-        rs.updateString("nombre_dpto", nomb);
-        rs.updateString("localidad", localidad);
+        rs.updateString("nombre_dpto", nomb.toUpperCase() );
+        rs.updateString("localidad", localidad.toUpperCase() );
 
         if (nuevoRegistro) {
             rs.insertRow(); // Insertamos el registro
